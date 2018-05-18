@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>js速度</title>
+    <style media="screen">
+      .test{
+        position: relative;
+        left: -200px;
+        width: 200px;
+        height: 200px;
+        /* top: -100px; */
+        background-color: yellow;
+      }
+      .test span{
+        width: 20px;
+        height: 90px;
+        background-color: green;
+        position: absolute;
+        left: 200px;
+        top:50px;
+        color: white;
+      }
+    </style>
+    <script type="text/javascript">
+      // 链式运动：核心是回调函数
+      // 宽高同时变化：{width:200px,height:900px,opacity:0.8}
+      //根据json参数，用一个定时器循环处理。完全处理好之后，退出定时器。
+      window.onload = function(){
+        var oDiv = document.getElementsByClassName("test")[0];
+        timer = setInterval(function(){},1000);
+        oDiv.onmouseover = function(){
+          startMove();
+        } //可以使用传一个target 来获得正速度或者负速度
+        oDiv.onmouseout = function(){
+          returnMove();
+        }
+        function startMove(){
+          //先清除所有定时器，以免鼠标重复进入，打开多个定时器
+          clearInterval(timer); //var timer 不会抛错
+          var oDiv = document.getElementsByClassName("test")[0];
+          // console.log(oDiv.style.height); //错误，只能获得内联属性
+          console.log(oDiv.offsetLeft);
+          timer = setInterval(function(){
+            console.log(oDiv.offsetLeft)
+            if(oDiv.offsetLeft >= 0){
+              clearInterval(timer);
+            }else{
+              //可以定义一个速度参数，达到缓冲移动的效果
+              //var speed = (10-oDiv.offsetLeft)/20;
+              //speed = speed > 0?Math.ceil(speed):Math.floor(speed);
+              //上面是对speed取整，因为像素都是整数，offsetLeft可能是小数
+              oDiv.style.left = oDiv.offsetLeft + 10 + 'px';
+            }
+          },1000)
+        }
+        function returnMove(){
+          //先清除所有定时器，以免鼠标重复进入，打开多个定时器
+          clearInterval(timer);
+          var oDiv = document.getElementsByClassName("test")[0];
+          // console.log(oDiv.style.height); //错误，只能获得内联属性
+          console.log(oDiv.offsetLeft);
+          timer = setInterval(function(){
+            console.log(oDiv.offsetLeft)
+            //offsetLeft 对于border、margin这些边框属性都是要计算在内的，对于运动
+            //参数来说是很重要的，举个例子：div width=200，border=1，那么div的offsetWidth=202
+            //定义一个定时器，每次offsetWidth - 1，那么这个div反而会增大，因为div的
+            //offsetWidth - 1之后，它会再加上一个2的border，那么现在div的offsetWidth=
+            //203，那么就会一直增加下去了，所以想要达到效果应该是使用div.style.width
+            if(oDiv.offsetLeft <= -192){
+              clearInterval(timer);
+            }else{
+              oDiv.style.left = oDiv.offsetLeft - 10 + 'px';
+            }
+          },50)
+        }
+      }
+      /////////////////////
+      var a = 100 ;
+      function test(obj) {
+        obj.timer = null;//私有；timer；共有
+        alert(a) ;
+        var a = 10 ; //你可以把这个注释掉 了解一下js的闭包，或者说是作用域
+        alert(a) ;
+      }
+      test() ;
+      alert(a) ;
+      //////////////////////
+    </script>
+  </head>
+  <body>
+    <div class="test"><span id="move">鼠标进入</span></div>
+  </body>
+</html>

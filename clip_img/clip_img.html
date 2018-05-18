@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Home</title>
+  <style media="screen">
+    body{background: #333;}
+    #box{position: absolute;top: 100px;left: 200px;width: 460px;height: 360px;}
+    #img1{opacity: 0.6;position: absolute;top: 0;left:0}
+    #img2{position: absolute;top: 0;left:0;clip:rect(0,200px,200px,0)}
+    /* {clip: rect(top,right,bottom,left)} */
+    #main{border: 1px solid white;width:200px;height: 200px;position: absolute;
+    cursor: move;}
+    /* 居中的小点 */
+    /* .minDiv{position: absolute;width: 8px;height: 8px;background: white;left:50%;
+    margin-left: -4px;top: -4px;} */
+    /* 公共样式 */
+    .minDiv{position: absolute;width: 8px;height: 8px;background: white;}
+    .left-up{top: -4px;left: -4px;cursor: nw-resize;}
+    .up{left:50%;margin-left: -4px;top:-4px;cursor: n-resize;}
+    .right-up{right:-4px;top: -4px;cursor: ne-resize;}
+    .right{right: -4px;top: 50%;margin-top: -4px;cursor: e-resize;}
+    .right-down{bottom: -4px;right: -4px;cursor: se-resize;}
+    .down{left: 50%;margin-left: -4px;bottom: -4px;cursor: s-resize;}
+    .left-down{left: -4px;bottom: -4px;cursor: sw-resize;}
+    .left{top: 50%;margin-top: -4px;left: -4px;cursor: w-resize;}
+
+    #preview{position: absolute;top: 100px;left:670px;}
+    #preview img{position: absolute;}
+  </style>
+  <script type="text/javascript">
+    window.onload = function(){
+      document.onselectstart = new Function('event.returnValue=false;');
+      var right_node = document.getElementsByClassName('right')[0];
+      var mainDiv = document.getElementById('main');
+      var up_node = document.getElementsByClassName('up')[0];
+      var left_node = document.getElementsByClassName('left')[0];
+      var down_node = document.getElementsByClassName('down')[0];
+      var right_up_node = document.getElementsByClassName('right-up')[0];
+      var right_down_node = document.getElementsByClassName('right-down')[0];
+      var left_up_node = document.getElementsByClassName('left-up')[0];
+      var left_down_node = document.getElementsByClassName('left-down')[0];
+
+      var ifKeyDown = false;
+      var contact = "" //表示被按下的触点
+      //鼠标按下事件
+      right_node.onmousedown = function(e){
+        e.stopPropagation();
+        ifKeyDown = true;
+        contact = "right";
+      }
+      right_up_node.onmousedown = function(){
+        ifKeyDown = true;
+        contact = "right_up";
+      }
+      right_down_node.onmousedown = function(){
+        ifKeyDown = true;
+        contact = "right_down";
+      }
+      up_node.onmousedown = function() {
+        ifKeyDown = true;
+        contact = 'up';
+      }
+      left_node.onmousedown = function(){
+        ifKeyDown = true;
+        contact = "left";
+      }
+      left_up_node.onmousedown = function(){
+        ifKeyDown = true;
+        contact = "left_up";
+      }
+      left_down_node.onmousedown = function(){
+        ifKeyDown = true;
+        contact = "left_down";
+      }
+      down_node.onmousedown = function(){
+        ifKeyDown = true;
+        contact = "down";
+      }
+      //鼠标松开事件
+      window.onmouseup = function(){
+        ifKeyDown = false;
+      }
+      //鼠标移动事件
+      window.onmousemove = function(e){
+        if(ifKeyDown){
+          switch (contact) {
+            case "right": rightMove(e);break;
+            case "up": upMove(e);break;
+            case "left":leftMove(e);break;
+            case "down":downMove(e);break;
+            case "left_up":leftMove(e);upMove(e);break;
+            case "right_up":rightMove(e);upMove(e);break;
+            case "left_down":leftMove(e);downMove(e);break;
+            case "right_down":rightMove(e);downMove(e);break;
+          }
+          // if(contact == "right"){
+          //   rightMove(e);
+          // }else if (contact == "up") {
+          //   upMove(e);
+          // }else if (contact == "left"){
+          //   leftMove(e);
+          // }else if(contact == "down"){
+          //   downMove(e);
+          // }
+        }
+        setChoice();
+        setPreview()
+      }
+      //右边移动
+      function rightMove(e){
+        var x = e.clientX; //鼠标x坐标
+        var addWidth = ""; //鼠标移动后选取框增加的宽度
+        var widthBefore = mainDiv.offsetWidth - 2; //选取框变化前的宽度
+        addWidth = x - getPosition(mainDiv).left - widthBefore //鼠标移动后增加的宽度
+        mainDiv.style.width = addWidth + widthBefore + "px";//选取框变化后
+      }
+      //上边移动
+      function upMove(e){
+        var y = e.clientY;//鼠标纵坐标
+        var mainY = getPosition(mainDiv).top;//选取框相对于屏幕上边的距离
+        var addHeight = mainY - y;//增加的高度
+        var heightBefore = mainDiv.offsetHeight - 2;//原来的高度
+        mainDiv.style.height = heightBefore + addHeight + "px";
+        mainDiv.style.top = mainDiv.offsetTop - addHeight + "px";
+      }
+      //左边移动
+      function leftMove(e){
+        var x = e.clientX;
+        var mainX = getPosition(mainDiv).left;
+        var addWidth = mainX - x;//增加的宽度
+        var widthBefore = mainDiv.offsetWidth - 2;//原来的宽度
+        mainDiv.style.width = widthBefore + addWidth + "px";
+        mainDiv.style.left = mainDiv.offsetLeft - addWidth + "px";
+      }
+      //下边移动
+      function downMove(e){
+        var y = e.clientY;
+        var heightBefore = mainDiv.offsetHeight -2 ;
+        var mainY = getPosition(mainDiv).top;
+        var addHeight = y - heightBefore - mainY;
+        mainDiv.style.height = addHeight + heightBefore + "px";
+      }
+      //获取元素相对于屏幕左边的距离，利用offsetLeft
+      function getPosition(node){
+        var left = node.offsetLeft;
+        var top = node.offsetTop;
+        var parent = node.offsetParent;
+        while (parent != null) {
+          left += parent.offsetLeft;
+          top += parent.offsetTop;
+          parent = parent.offsetParent;
+        }
+        return {"left":left,'top':top};
+      }
+      // 设置选取区域高亮可见
+      function setChoice(){
+        var top = mainDiv.offsetTop;
+        var right = mainDiv.offsetLeft + mainDiv.offsetWidth;
+        var bottom = mainDiv.offsetTop + mainDiv.offsetHeight;
+        var left = mainDiv.offsetLeft;
+        var img2 = document.getElementById("img2");
+        img2.style.clip = "rect("+top+"px,"+right+"px,"+bottom+"px,"+left+"px)";
+      }
+      // 设置preview函数
+      function setPreview(){
+        var top = mainDiv.offsetTop;
+        var right = mainDiv.offsetLeft + mainDiv.offsetWidth;
+        var bottom = mainDiv.offsetTop + mainDiv.offsetHeight;
+        var left = mainDiv.offsetLeft;
+        var img3 = document.getElementById("img3");
+        img3.style.top = -top +"px";
+        img3.style.left = -left + "px";
+        img3.style.clip = "rect("+top+"px,"+right+"px,"+bottom+"px,"+left+"px)";
+      }
+    }
+
+  </script>
+</head>
+<body>
+  <div id="box">
+    <img id="img1" src="./img/a.jpg" alt="裁剪图片" style="width: 460px;height:360px;">
+    <img id="img2" src="./img/a.jpg" alt="裁剪图片" style="width: 460px;height:360px;">
+    <div id="main">
+      <div class="minDiv left-up"></div>
+      <div class="minDiv up"></div>
+      <div class="minDiv right-up"></div>
+      <div class="minDiv right"></div>
+      <div class="minDiv right-down"></div>
+      <div class="minDiv down"></div>
+      <div class="minDiv left-down"></div>
+      <div class="minDiv left"></div>
+    </div>
+  </div>
+  <div id="preview">
+    <img id="img3" src="./img/a.jpg" alt="裁剪图片" style="width: 460px;height:360px;" />
+  </div>
+</body>
+</html>
+
+
+// 利用css 属性的clip 可以对图片进行裁剪
+// opacity 属性
+// absolute 定位属性

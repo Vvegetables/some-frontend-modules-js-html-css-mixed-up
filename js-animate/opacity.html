@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>js透明度</title>
+    <style media="screen">
+      .div1{width:200px;height: 200px;background-color: red;filter: alpha(opacity:30);
+      opacity:0.3;}
+    </style>
+    <script type="text/javascript">
+      window.onload = function(){
+        var oDiv = document.getElementsByClassName('div1')[0];
+        oDiv.onmouseover = function(){
+          startMove(100);
+        }
+        oDiv.onmouseout = function(){
+          startMove(30);
+        }
+      }
+      var alpha = 30;
+      var timer = null;//定义一个定时器
+      function startMove(iTarget){
+        var oDiv = document.getElementsByClassName('div1')[0];
+        clearInterval(timer);
+        timer = setInterval(function(){
+          if(alpha > iTarget){
+            speed = -10;
+          }else{
+            speed = 10;
+          }
+          if(alpha == iTarget){
+            clearInterval(timer);
+          }else{
+            alpha += speed;
+            oDiv.style.filter = 'alpha(opacity:'+ alpha +')';
+            oDiv.style.opacity = alpha/100;
+          }
+
+
+        },30)
+      }
+    </script>
+  </head>
+  <body>
+    <div class="div1">
+
+    </div>
+  </body>
+</html>
