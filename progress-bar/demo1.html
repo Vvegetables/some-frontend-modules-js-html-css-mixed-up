@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>定时器的进度条</title>
+    <style media="screen">
+      .loading{width: 100%;height: 100%;position: fixed;top: 0;left: 0;
+      z-index: 100;background-color: white;opacity: 0.5;}
+      .pic{width: 64px;height: 64px;position: absolute;left: 0;right: 0;top: 0;bottom: 0;margin: auto;
+      background-image: url(img/35.gif);}
+    </style>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript">
+      $(function(){
+        var timer = setInterval(function(){
+          $('.loading').fadeOut();
+          clearInterval(timer);
+        },3000)
+      });
+    </script>
+  </head>
+  <body>
+    <!-- 这里介绍一个在线生成gif图像的网站，可以制作一些图片或者是动画
+      preloaders.net
+   -->
+  <div class="loading">
+    <div class="pic"></div>
+  </div>
+  <img src="http://a.hiphotos.baidu.com/image/h%3D300/sign=12c4d521a80f4bfb93d09854334e788f/10dfa9ec8a136327f216788d9d8fa0ec09fac791.jpg" alt="">
+  <img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=783340072,1312243264&fm=27&gp=0.jpg" alt="">
+  <img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1656447268,3988050280&fm=27&gp=0.jpg" alt="">
+  <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1526748215863&di=83adcd009d7bcc7d0c5c1966543c8c31&imgtype=0&src=http%3A%2F%2Fdl.bizhi.sogou.com%2Fimages%2F2012%2F04%2F11%2F155553.jpg" alt="">
+
+  </body>
+</html>
