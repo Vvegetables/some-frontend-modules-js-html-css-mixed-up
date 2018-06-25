@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>html tag usage</title>
+</head>
+<body>
+	<!-- abbr标签，标记缩写词语,设置title属性，鼠标放上去可以显示提示信息 -->
+	
+	The <abbr title="World Health Organization">WHO</abbr> was founded in 1948. 
+	<br>
+
+
+	<!-- a标签 download属性,设置该属性，可以直接进行下载操作。同时该名字为下载的文件名 -->
+	
+	<a href="images/runoob.png" download="runoob.png">点击download属性</a>
+	<!-- media属性,目前不知道怎么使用 -->
+	<a href="https://www.runoob.com/tags/att-a-media.html" media="all and (orientation: landscape)">测试media属性</a>
+	<!-- rel属性，浏览器不使用，搜索引擎会利用该属性获得更多的信息 -->
+	<a href="https://www.runoob.com/tags/att-a-rel.html" rel="index">rel属性</a>
+	<!-- a标签的target属性，窗口的打开方式 -->
+	<a href="https://www.runoob.com/tags/att-a-target.html" target="_blank|_self|_parent|_top|framename">target属性</a>
+	<br>
+
+	<!-- 锚点 -->
+	
+
+	<!-- address标签 -->
+	
+	<br>
+	<address>
+		Written by <a href="mailto:webmaster@example.com">Donald Duck</a>.<br> 
+		Visit us at:<br>
+		Example.com<br>
+		Box 564, Disneyland<br>
+		USA
+	</address>
+	<article>
+		<address>
+			Written by <a href="http://www.runoob.com/tags/tag-address.html">Donald Duck</a>.<br> 
+			Visit us at:<br>
+			Example.com<br>
+			Box 564, Disneyland<br>
+			USA
+		</address>
+	</article>
+
+	<!-- map 测试 -->
+
+	<h1>下图是map测试</h1>
+	<img src="images/runoob.png" width="400px" height="400px" usemap="#test">
+	<map name='test'>
+		<area shape="rect" coords="0,0,100,100" href="test.html">
+		<area shape="circle" coords="100,100,100" href="http://www.runoob.com/tags/tag-area.html">
+	</map>
+
+
+	<!-- aside测试，主要用来作为article的侧栏 -->
+	<p>My family and I visited The Epcot center this summer.</p>
+ 
+	<aside>
+	  <h4>Epcot Center</h4>
+	  <p>The Epcot Center is a theme park in Disney World, Florida.</p>
+	</aside>
+
+
+	<!-- 文字方向标签，bdi bdo -->
+	<p>
+		<bdo dir="rtl">(ltr)hello world</bdo>
+	</p>
+
+	<!-- button 标签 -->
+	<button value="hello">(http://www.runoob.com/tags/tag-button.html)</button>
+
+	<!-- canvas 标签 canvas标签只是图形容器，你必须使用脚本来绘制图形
+		画布手册了解一下：http://www.runoob.com/tags/ref-canvas.html
+	-->
+	<canvas id="myCanvas"></canvas>
+	<script type="text/javascript">
+		var canvas = document.getElementById('myCanvas');
+		var ctx = canvas.getContext('2d');
+		ctx.fillStyle = '#000000';
+		ctx.fillRect(0,0,100,100);
+	</script>
+
+	<!-- table标签，表格的使用 -->
+	<table border="1">
+		<colgroup>
+	    <col span="1" style="background-color:red">
+	    <col style="background-color:yellow">
+	  </colgroup>
+		<caption>caption标签</caption>
+		<thead>
+			<tr>
+				<th>th1</th>
+				<th>th2</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>td1</td>
+				<td>td2</td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td>td3</td>
+				<td>td4</td>
+			</tr>
+		</tfoot>
+	</table>
+
+	<!-- cite标签 指示标题 -->
+	<p><cite>The Scream</cite> <i>by Edward Munch.</i> Painted in 1893.</p>
+
+	<!-- <datalist> 标签规定了 <input> 元素可能的选项列表。 -->
+	<form action="demo-form.php" method="get">
+	<input list="browsers" name="browser">
+	<datalist id="browsers">
+	  <option value="Internet Explorer">
+	  <option value="Firefox">
+	  <option value="Chrome">
+	  <option value="Opera">
+	  <option value="Safari">
+	</datalist>
+	<input type="submit">
+	</form>
+
+	<!-- 感觉没什么用 http://www.runoob.com/tags/tag-dd.html -->
+
+	<dl>
+	  <dt>Coffee</dt>
+	  <dd>Black hot drink</dd>
+	  <dt>Milk</dt>
+	  <dd>White cold drink</dd>
+	</dl>
+
+	<!-- del属性 文本中包含删除线 cite属性是用来说明这个的页面，datetime是删除线显示的时间-->
+	<p>My favorite color is <del cite="test.html" datetime="2018-06-23T22:55:03Z">blue</del> <ins>red</ins>!</p>
+
+
+	<!-- details 属性，与summary标签可以共用 -->
+	<details>
+	<summary>Copyright 1999-2011.</summary>
+	<p> - by Refsnes Data. All Rights Reserved.</p>
+	<p>All content and graphics on this web site are the property of the company Refsnes Data.</p>
+	</details>
+
+	<!-- dialog -->
+	<dialog open>This is an open dialog window</dialog>
+
+	<!-- <embed> 标签定义嵌入的内容，比如插件。 http://www.runoob.com/tags/tag-embed.html -->
+	<embed src="http://www.runoob.com//try/demo_source/helloworld.swf" tppabs="http://www.runoob.com//try/demo_source/helloworld.swf" controls=smallconsole autostart=false>
+
+
+	<!-- <fieldset> 标签可以将表单内的相关元素分组。<fieldset> 标签会在相关表单元素周围绘制边框。http://www.runoob.com/tags/att-fieldset-form.html -->
+	<form>
+	 <fieldset>
+	  <legend style="text-align: center;">Personalia:</legend>
+	  Name: <input type="text"><br>
+	  Email: <input type="text"><br>
+	  Date of birth: <input type="text">
+	 </fieldset>
+	</form>
+
+
+	<!-- figcaption 图片的标题 元素的内容应该与主内容相关，同时元素的位置相对于主内容是独立的。如果被删除，则不应对文档流产生影响。 -->
+	<figure>
+	  <img src="images/runoob.png" alt="The Pulpit Rock">
+	  <figcaption>Fig.1 - A view of the pulpit rock in Norway.</figcaption>
+	</figure>
+	<span>ffdsfjal</span>
+
+	<!-- 高亮标签 -->
+	<p>Do not forget to buy <mark>milk</mark> today.</p>
+
+
+	<!-- frame是必须放在frameset中，在html5中使用可以使用iframe标签，iframe 标签可以单独使用
+	除此之外，frameset使用的方式也是不能有body标签的包围下，直接再html标签中使用 -->
+	<frameset cols="25%,*,25%">
+	  <frame src="frame_a.html">
+	  <frame src="frame_b.html">
+	  <frame src="frame_c.html">
+	</frameset>
+
+
+	<!-- header标签 <header> 标签定义文档或者文档的一部分区域的页眉。
+	<header> 元素应该作为介绍内容或者导航链接栏的容器。
+	在一个文档中，您可以定义多个 <header> 元素。
+	注释：<header> 标签不能被放在 <footer>、<address> 或者另一个 <header> 元素内部。 -->
+
+	<hr>
+	<hr>
+	<article>
+	  <header>
+	    <h1>Internet Explorer 9</h1>
+	    <p><time pubdate datetime="2011-03-15"></time></p>
+	  </header>
+	  <p> Windows Internet Explorer 9(缩写为 IE9 )是在2011年3月14日21:00发布的</p>
+	</article>
+
+
+	<!-- object 对象 <object> 标签用于包含对象，比如图像、音频、视频、Java applets、ActiveX、PDF 以及 Flash。object 的初衷是取代 img 和applet元素。不过由于漏洞以及缺乏浏览器支持，这一点并未实现。
+	浏览器的对象支持有赖于对象类型。不幸的是，主流浏览器都使用不同的代码来加载相同的对象类型。
+	而幸运的是，object 对象提供了解决方案。如果未显示 object 元素，就会执行位于 <object> 和 </object> 之间的代码。通过这种方式，我们能够嵌套多个 object 元素（每个对应一个浏览器）。-->
+	<object width="400" height="400" data="helloworld.swf" >
+</body>
+
+</html>
