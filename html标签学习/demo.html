@@ -3,16 +3,21 @@
 <head>
 	<meta charset="utf-8">
 	<title>html tag usage</title>
+	<style type="text/css">
+		li:before{
+			content:'hello';
+		}
+	</style>
 </head>
 <body>
 	<!-- abbr标签，标记缩写词语,设置title属性，鼠标放上去可以显示提示信息 -->
-	
+	<h1>abbr标签，标记缩写词语,设置title属性，鼠标放上去可以显示提示信息 </h1>
 	The <abbr title="World Health Organization">WHO</abbr> was founded in 1948. 
 	<br>
 
 
 	<!-- a标签 download属性,设置该属性，可以直接进行下载操作。同时该名字为下载的文件名 -->
-	
+	<h1>a标签 download属性,设置该属性，可以直接进行下载操作。同时该名字为下载的文件名</h1>
 	<a href="images/runoob.png" download="runoob.png">点击download属性</a>
 	<!-- media属性,目前不知道怎么使用 -->
 	<a href="https://www.runoob.com/tags/att-a-media.html" media="all and (orientation: landscape)">测试media属性</a>
@@ -26,7 +31,7 @@
 	
 
 	<!-- address标签 -->
-	
+	<h1>address标签</h1>
 	<br>
 	<address>
 		Written by <a href="mailto:webmaster@example.com">Donald Duck</a>.<br> 
@@ -47,7 +52,7 @@
 
 	<!-- map 测试 -->
 
-	<h1>下图是map测试</h1>
+	<h1>下图是map测试(map标签)</h1>
 	<img src="images/runoob.png" width="400px" height="400px" usemap="#test">
 	<map name='test'>
 		<area shape="rect" coords="0,0,100,100" href="test.html">
@@ -56,6 +61,7 @@
 
 
 	<!-- aside测试，主要用来作为article的侧栏 -->
+	<h1>aside测试，主要用来作为article的侧栏</h1>
 	<p>My family and I visited The Epcot center this summer.</p>
  
 	<aside>
@@ -65,6 +71,7 @@
 
 
 	<!-- 文字方向标签，bdi bdo -->
+	<h1>文字方向标签，bdi bdo</h1>
 	<p>
 		<bdo dir="rtl">(ltr)hello world</bdo>
 	</p>
@@ -83,6 +90,7 @@
 		ctx.fillRect(0,0,100,100);
 	</script>
 
+	<h1>table标签，表格的使用</h1>
 	<!-- table标签，表格的使用 -->
 	<table border="1">
 		<colgroup>
@@ -111,9 +119,11 @@
 	</table>
 
 	<!-- cite标签 指示标题 -->
+	<h1>cite标签 指示标题</h1>
 	<p><cite>The Scream</cite> <i>by Edward Munch.</i> Painted in 1893.</p>
 
 	<!-- <datalist> 标签规定了 <input> 元素可能的选项列表。 -->
+	<h1>datalist标签规定了 input元素可能的选项列表。</h1>
 	<form action="demo-form.php" method="get">
 	<input list="browsers" name="browser">
 	<datalist id="browsers">
@@ -140,6 +150,7 @@
 
 
 	<!-- details 属性，与summary标签可以共用 -->
+	<h1>details 与summary标签可以共用</h1>
 	<details>
 	<summary>Copyright 1999-2011.</summary>
 	<p> - by Refsnes Data. All Rights Reserved.</p>
@@ -147,6 +158,7 @@
 	</details>
 
 	<!-- dialog -->
+	<h1>dialog</h1>
 	<dialog open>This is an open dialog window</dialog>
 
 	<!-- <embed> 标签定义嵌入的内容，比如插件。 http://www.runoob.com/tags/tag-embed.html -->
@@ -154,6 +166,7 @@
 
 
 	<!-- <fieldset> 标签可以将表单内的相关元素分组。<fieldset> 标签会在相关表单元素周围绘制边框。http://www.runoob.com/tags/att-fieldset-form.html -->
+	<h1>fieldset</h1>
 	<form>
 	 <fieldset>
 	  <legend style="text-align: center;">Personalia:</legend>
@@ -165,6 +178,7 @@
 
 
 	<!-- figcaption 图片的标题 元素的内容应该与主内容相关，同时元素的位置相对于主内容是独立的。如果被删除，则不应对文档流产生影响。 -->
+	<h1>figcaption</h1>
 	<figure>
 	  <img src="images/runoob.png" alt="The Pulpit Rock">
 	  <figcaption>Fig.1 - A view of the pulpit rock in Norway.</figcaption>
@@ -203,7 +217,44 @@
 	<!-- object 对象 <object> 标签用于包含对象，比如图像、音频、视频、Java applets、ActiveX、PDF 以及 Flash。object 的初衷是取代 img 和applet元素。不过由于漏洞以及缺乏浏览器支持，这一点并未实现。
 	浏览器的对象支持有赖于对象类型。不幸的是，主流浏览器都使用不同的代码来加载相同的对象类型。
 	而幸运的是，object 对象提供了解决方案。如果未显示 object 元素，就会执行位于 <object> 和 </object> 之间的代码。通过这种方式，我们能够嵌套多个 object 元素（每个对应一个浏览器）。-->
-	<object width="400" height="400" data="helloworld.swf" >
+	<object width="400" height="400" data="helloworld.swf" ></object>
+
+	<hr>
+	<ol>
+	  <li>Coffee</li>
+	  <li>Tea</li>
+	  <li>Milk</li>
+	</ol>
+
+	<ol start="50">
+	  <li>Coffee</li>
+	  <li>Tea</li>
+	  <li>Milk</li>
+	</ol>
+
+
+	<!-- optgroup的使用 -->
+
+	<h1>select optgroup</h1>
+	<select>
+	  <optgroup label="Swedish Cars">
+	    <option value="volvo">Volvo</option>
+	    <option value="saab">Saab</option>
+	  </optgroup>
+	  <optgroup label="German Cars">
+	    <option value="mercedes">Mercedes</option>
+	    <option value="audi">Audi</option>
+	  </optgroup>
+	</select>
+
+
+	<!-- 有一个神奇的标签 html5新加入的 -->
+	<form oninput="x.value=parseInt(a.value)+parseInt(b.value)">0
+	  <input type="range" id="a" value="50">100
+	  +<input type="number" id="b" value="50">
+	  =<output name="x" for=""></output>
+	</form>
+
 </body>
 
 </html>
